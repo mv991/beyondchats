@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react"
+import Sidebar from './components/Sidebar';
+import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
+import { useThemeContext } from "./theme/ThemeContextProvider";
+import useMediaQuery from '@mui/material/useMediaQuery';
 function App() {
+   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const { theme } = useThemeContext();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="main">
+         <Sidebar />
+      <Box sx={{bgcolor:"primary.main",width:{xs:"0",md:"75%"} ,height:"100vh",display: { xs: "none", md: "block" },}} > </Box>
+      
+      </div>
+ 
+     </ThemeProvider>
   );
 }
 
